@@ -1,23 +1,26 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { CartProvider } from './contexts/CartContext';
-import Navbar from './components/user/navbar/Navbar';
-// import ProductListing from './pages/ProductListing';
-// import Cart from './pages/Cart';
-// import Checkout from './pages/Checkout';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserDashboard from "./pages/user/userdashboard/Userdashboard";
+import Home from "./pages/user/home/Home.js";
+import Shirts from "./pages/user/mens/Shirts.js";
+import { CartProvider } from './context/CartContext.js';
+import Cart from './pages/user/cart/Cart';
 
 function App() {
   return (
-    
-      <Router>
-        <Navbar />
-        <Routes>
-        
-        </Routes>
-      </Router>
-    
+    <CartProvider>
+    <Router>
+      <Routes>
+        {/* Dashboard Layout (Navbar + Outlet) */}
+        <Route path="/" element={<UserDashboard />}>
+        <Route path="/" element={<Home />} />
+        <Route path="mens/shirts" element={<Shirts />} />
+        <Route path="/cart" element={<Cart />} />
+        </Route>
+
+       
+      </Routes>
+    </Router>
+    </CartProvider>
   );
 }
 
