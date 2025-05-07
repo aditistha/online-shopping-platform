@@ -11,7 +11,7 @@ import {
 import './Cart.css';
 
 const Cart = () => {
-  const { cart, addToCart, removeFromCart} = useCart();
+  const { cart, addToCart, removeFromCart,decreaseQuantity,} = useCart();
 
   const getItemCount = (productId) => {
     return cart.filter(item => item.id === productId).length;
@@ -44,7 +44,7 @@ const Cart = () => {
       {cart.length === 0 ? (
         <div className="empty-cart">
           <p>Your cart is empty</p>
-          <Link to="/" className="continue-shopping">
+          <Link to="/home" className="continue-shopping">
             Continue Shopping
           </Link>
         </div>
@@ -60,12 +60,13 @@ const Cart = () => {
                   <h3>{item.name}</h3>
                   <p className="item-price">${item.price.toFixed(2)}</p>
                   <div className="quantity-controls">
-                    <button 
-                      onClick={() => handleDecrease(item.id)}
-                      className="quantity-btn"
-                    >
-                      <FontAwesomeIcon icon={faMinus} />
-                    </button>
+                  <button 
+              onClick={() => decreaseQuantity(item.id)}
+              className="quantity-btn"
+              disabled={getItemCount(item.id) <= 1} // Disable when quantity is 1
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
                     <span className="quantity">{getItemCount(item.id)}</span>
                     <button 
                       onClick={() => handleIncrease(item)}

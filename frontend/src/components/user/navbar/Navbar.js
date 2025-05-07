@@ -18,7 +18,7 @@ import './Navbar.css';
 import { useCart } from '../../../context/CartContext';
 
 const Navbar = () => {
-  const { cart, addToCart, removeFromCart } = useCart();
+  const { cart, addToCart, decreaseQuantity, removeFromCart } = useCart();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -38,11 +38,7 @@ const Navbar = () => {
   };
 
   const handleDecrease = (productId) => {
-    // Find last index of this product to remove
-    const lastIndex = cart.map(item => item.id).lastIndexOf(productId);
-    if (lastIndex !== -1) {
-      removeFromCart(cart[lastIndex].id);
-    }
+    decreaseQuantity(productId); // Use the new function
   };
 
   const getItemCount = (productId) => {
@@ -140,12 +136,13 @@ const Navbar = () => {
                             <h4>{item.name}</h4>
                             <p>${item.price.toFixed(2)}</p>
                             <div className="quantity-controls">
-                              <button 
-                                onClick={() => handleDecrease(item.id)}
-                                className="quantity-btn"
-                              >
-                                <FontAwesomeIcon icon={faMinus} />
-                              </button>
+                            <button 
+                                  onClick={() => handleDecrease(item.id)}
+                                  className="quantity-btn"
+                                  disabled={getItemCount(item.id) <= 1}
+                                >
+                                  <FontAwesomeIcon icon={faMinus} />
+                                </button>
                               <span>{getItemCount(item.id)}</span>
                               <button 
                                 onClick={() => handleIncrease(item)}

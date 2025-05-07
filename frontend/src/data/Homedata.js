@@ -1,6 +1,6 @@
 import menImage1 from '../images/men1.jpg';
 import menImage2 from '../images/men2.jpg';
-import menImage3 from '../images/men3.jpg';
+import menImage3 from '../images/men3.webp';
 import menImage4 from '../images/men4.jpg';
 import womenmenImage1 from '../images/women1.jpg';
 import womenImage2 from '../images/women2.jpg';
@@ -25,7 +25,7 @@ export const menlatest = [
     },
     {
       id: 2,
-      name: 'Designer Handbag',
+      name: 'Aviator Jacket',
       price: 89.99,
       image: menImage3,
       category: 'accessories/bags',
@@ -35,7 +35,7 @@ export const menlatest = [
     },
     {
       id: 3,
-      name: 'Running Shoes',
+      name: 'Classic Work Trousers',
       price: 59.99,
       image: menImage4,
       category: 'shoes/sports',

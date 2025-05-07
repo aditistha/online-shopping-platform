@@ -12,7 +12,7 @@ function App() {
       <Routes>
         {/* Dashboard Layout (Navbar + Outlet) */}
         <Route path="/" element={<UserDashboard />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="mens/shirts" element={<Shirts />} />
         <Route path="/cart" element={<Cart />} />
         </Route>
